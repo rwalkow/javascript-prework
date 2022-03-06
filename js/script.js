@@ -1,5 +1,5 @@
+function playGame(argMoveId){
 let randomNumber = Math.floor(Math.random() * 3 + 1);
-
 console.log('Wylosowana liczba to: ' + randomNumber);
 
 function getMoveName(argMoveId){
@@ -13,12 +13,12 @@ function getMoveName(argMoveId){
     printMessage('Nie znam ruchu o id ' + argMoveId + '.');
     return 'nieznany ruch';
   }
-}
+};
 
 function displayResult(argComputerMove, argPlayerMove){
-  console.log('moves:', argComputerMove, argPlayerMove);
+  console.log('moves:', argComputerMove, argPlayerMove); 
+  clearMessages();
   printMessage('Zagrałem ' + argComputerMove + ', a Ty ' + argPlayerMove);
-  
   if( argComputerMove == argPlayerMove){
     printMessage('Remis!');
   } else if( argComputerMove == 'kamień' && argPlayerMove == 'papier'){
@@ -30,13 +30,20 @@ function displayResult(argComputerMove, argPlayerMove){
   }  else {
     printMessage('Tym razem przegrywasz :(');
   }
-}
-
+};
 
 let computerMove = getMoveName(randomNumber);
-let playerInput = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
-
+let playerInput = argMoveId;
 let playerMove = getMoveName(playerInput);
-
 displayResult(computerMove, playerMove)
+};
 
+document.getElementById('play-rock').addEventListener('click', function(){
+  playGame(1);
+});
+document.getElementById('play-paper').addEventListener('click', function(){
+  playGame(2);
+});
+document.getElementById('play-scissors').addEventListener('click', function(){
+  playGame(3);
+});
