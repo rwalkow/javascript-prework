@@ -3,16 +3,13 @@ let randomNumber = Math.floor(Math.random() * 3 + 1);
 console.log('Wylosowana liczba to: ' + randomNumber);
 
 function getMoveName(argMoveId){
-  if(argMoveId == 1){
-    return 'kamień';
-  } else if(argMoveId == 2){
-    return 'papier';
-  } else if(argMoveId == 3){
-    return 'nożyce';
-  } else {
-    printMessage('Nie znam ruchu o id ' + argMoveId + '.');
-    return 'nieznany ruch';
-  }
+  const move = ['kamień','papier','nożyce'];
+  /*
+  if (argMoveId < 1 && argMoveId > 3) { //this should never happen, because a random number is in the range 1-3 
+    return 'nieznany ruch';             // and the buttons only allow chose the range 1-3 
+  } 
+  */ 
+  return move[argMoveId-1];
 };
 
 function displayResult(argComputerMove, argPlayerMove){
