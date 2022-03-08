@@ -42,12 +42,9 @@ function displayResult(argComputerMove, argPlayerMove){
                <td>${playerRoundResult[i]}</td>
                <td>${computerRoundResult[i]}</td>
             </tr>`;
-  };
-
-  for (let i=0;i<3;i++) {
     gameTableRows=`${gameTableRows}<td>${gameResult[i]}</td>`;
   };
-  
+
   moveTable = `<table>
     <tr>
       <th>Ruch</th>
