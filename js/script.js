@@ -1,40 +1,54 @@
-var playerRoundResult=[0,0,0];  // player move: stone, papaer, scissors
-var computerRoundResult=[0,0,0]; // computer move: stone, papaer, scissors
-var gameResult=[0,0,0]; //palyer win, computer win , draw
+let playerRoundResult=[0,0,0];  // player move: stone, papaer, scissors
+let computerRoundResult=[0,0,0]; // computer move: stone, papaer, scissors
+let gameResult=[0,0,0]; //palyer win, computer win , draw
+let counter = 0;
+const cheatingFactor=10; //cheating factor in % for example 10% - chear every 10-th move  
 
 function playGame(argMoveId){
+
+  function getWinningMove(argMoveId){  
+    return (argMoveId %3) +1;
+  };
+
 let randomNumber = Math.floor(Math.random() * 3 + 1);
-//console.log('Wylosowana liczba to: ' + randomNumber);
+counter++;
+console.log(counter);
+if (counter >= 100/cheatingFactor) {
+  counter=0;
+  randomNumber = getWinningMove(argMoveId);
+  console.log('Oszukuję '); 
+}
 
-function getMoveName(argMoveId){
-  const move = ['kamień','papier','nożyce'];
-  /*
-  if (argMoveId < 1 && argMoveId > 3) { //this should never happen, because a random number in the range 1-3 
-    return 'nieznany ruch';             // and the buttons only allow selection in the range 1-3 
-  } 
-  */ 
-  return move[argMoveId-1];
-};
+console.log('Wylosowana liczba to: ' + randomNumber);
 
-function displayResult(argComputerMove, argPlayerMove){
-  let moveTableRows="";
-  let gameTableRows=""; 
-  clearMessages();
-  printMessage(`Zagrałem ${argComputerMove} , a Ty  ${argPlayerMove}`);
+  function getMoveName(argMoveId){
+    const move = ['kamień','papier','nożyce'];
+    /*  if (argMoveId < 1 && argMoveId > 3) { //this should never happen, because a random number in the range 1-3 
+        return 'nieznany ruch';             // and the buttons only allow selection in the range 1-3
+      }  */ 
+    return move[argMoveId-1];
+  };
 
-  if( argComputerMove === argPlayerMove){
-    printMessage('Remis!');
-    gameResult[0]++;
-  } else if((argComputerMove == 'kamień' && argPlayerMove == 'papier') ||  
-	  (argComputerMove == 'papier' && argPlayerMove == 'nożyce') || 
-	  (argComputerMove == 'nożyce' && argPlayerMove == 'kamień')){
-    		printMessage('Ty wygrywasz!');
-        gameResult[1]++;
-  }  else {
-    printMessage('Tym razem przegrywasz :(');
-    gameResult[2]++;
-  }
-    
+
+  function displayResult(argComputerMove, argPlayerMove){
+    let moveTableRows="";
+    let gameTableRows=""; 
+    clearMessages();
+    printMessage(`Zagrałem ${argComputerMove} , a Ty  ${argPlayerMove}`);
+
+    if( argComputerMove === argPlayerMove){
+     printMessage('Remis!');
+     gameResult[2]++;
+    } else if((argComputerMove == 'kamień' && argPlayerMove == 'papier') ||  
+	    (argComputerMove == 'papier' && argPlayerMove == 'nożyce') || 
+	   (argComputerMove == 'nożyce' && argPlayerMove == 'kamień')){
+     		printMessage('Ty wygrywasz!');
+        gameResult[0]++;
+    }  else {
+     printMessage('Tym razem przegrywasz :(');
+     gameResult[1]++;
+    }
+  console.log(gameResult);  
   for (let i=0;i<3;i++) {
     moveTableRows=`${moveTableRows} 
             <tr>
