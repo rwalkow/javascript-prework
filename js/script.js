@@ -2,11 +2,11 @@ let playerRoundResult=[0,0,0];  // player move: stone, papaer, scissors
 let computerRoundResult=[0,0,0]; // computer move: stone, papaer, scissors
 let gameResult=[0,0,0]; //palyer win, computer win , draw
 let counter = 0;
-const cheatingFactor=10; //cheating factor in % for example 10% - chear every 10-th move  
+const cheatingFactor=10; //cheating factor in % for example 10% - cheat every 10-th move
 
 function playGame(argMoveId){
 
-  function getWinningMove(argMoveId){  
+  function getWinningMove(argMoveId){
     return (argMoveId %3) +1;
   };
 
@@ -16,10 +16,10 @@ console.log(counter);
 if (counter >= 100/cheatingFactor) {
   counter=0;
   randomNumber = getWinningMove(argMoveId);
-  console.log('Oszukuję '); 
+  console.log('Oszukuję'); 
 }
 
-console.log('Wylosowana liczba to: ' + randomNumber);
+//console.log('Wylosowana liczba to: ' + randomNumber);
 
   function getMoveName(argMoveId){
     const move = ['kamień','papier','nożyce'];
@@ -41,14 +41,14 @@ console.log('Wylosowana liczba to: ' + randomNumber);
      gameResult[2]++;
     } else if((argComputerMove == 'kamień' && argPlayerMove == 'papier') ||  
 	    (argComputerMove == 'papier' && argPlayerMove == 'nożyce') || 
-	   (argComputerMove == 'nożyce' && argPlayerMove == 'kamień')){
-     		printMessage('Ty wygrywasz!');
+	    (argComputerMove == 'nożyce' && argPlayerMove == 'kamień')){
+	    printMessage('Ty wygrywasz!');
         gameResult[0]++;
     }  else {
      printMessage('Tym razem przegrywasz :(');
      gameResult[1]++;
     }
-  console.log(gameResult);  
+
   for (let i=0;i<3;i++) {
     moveTableRows=`${moveTableRows} 
             <tr>
@@ -57,7 +57,7 @@ console.log('Wylosowana liczba to: ' + randomNumber);
                <td>${computerRoundResult[i]}</td>
             </tr>`;
     gameTableRows=`${gameTableRows}<td>${gameResult[i]}</td>`;
-  };
+  }
 
   moveTable = `<table>
     <tr>
@@ -83,7 +83,7 @@ console.log('Wylosowana liczba to: ' + randomNumber);
     printMessage(moveTable);                   
     printMessage('<h2>Statystyka wyników</h2>');
     printMessage(gameTable);
-};
+}
 
 playerRoundResult[argMoveId-1]++;
 computerRoundResult[randomNumber-1]++;
@@ -91,7 +91,7 @@ let computerMove = getMoveName(randomNumber);
 let playerInput = argMoveId;
 let playerMove = getMoveName(playerInput);
 displayResult(computerMove, playerMove)
-};
+}
 
 document.getElementById('play-rock').addEventListener('click', function(){
   playGame(1);
