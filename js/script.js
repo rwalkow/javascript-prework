@@ -24,7 +24,7 @@ const playGame = function(argMoveId){
 //console.log('Wylosowana liczba to: ' + randomNumber);
   const getMoveName = function(argMoveId){
     const move = ['kamień','papier','nożyce'];
-    /*  if (argMoveId < 1 && argMoveId > 3) { //this should never happen, because a random number in the range 1-3 
+    /*  if (argMoveId < 1 && argMoveId > 3) { //this should never happen, because a random number in the range 1-3
         return 'nieznany ruch';             // and the buttons only allow selection in the range 1-3
       }  */ 
     return move[argMoveId-1];
@@ -32,7 +32,8 @@ const playGame = function(argMoveId){
 
 
   const displayResult=function(argComputerMove, argPlayerMove){
-    let moveTableRows="", gameTableRows=""; 
+    let moveTableRows="";
+    let gameTableRows="";
     clearMessages();
     printMessage(`Zagrałem ${argComputerMove} , a Ty  ${argPlayerMove}`);
 
@@ -50,7 +51,7 @@ const playGame = function(argMoveId){
     }
 
   for (let i=0;i<3;i++) {
-    moveTableRows=`${moveTableRows} 
+    moveTableRows=`${moveTableRows}
             <tr>
                <td>${getMoveName(i+1)}</td>
                <td>${playerRoundResult[i]}</td>
@@ -59,16 +60,17 @@ const playGame = function(argMoveId){
     gameTableRows=`${gameTableRows}<td>${gameResult[i]}</td>`;
   }
 
-  let moveTable = `<table>
+    const moveTable = `<table>
     <tr>
       <th>Ruch</th>
       <th>Gracz</th>
       <th>Komputer</th>
     </tr>
     ${moveTableRows}
-    </table>`,  
+    </table>`;  
     
-    gameTable = `<table>
+
+    const gameTable = `<table>
     <tr>
       <th>Wygrana gracza</th>
       <th>Wygrana komputera</th>
@@ -87,8 +89,9 @@ const playGame = function(argMoveId){
 
 playerRoundResult[argMoveId-1]++;
 computerRoundResult[randomNumber-1]++;
-let computerMove = getMoveName(randomNumber),
-    playerMove = getMoveName(argMoveId);
+
+const computerMove = getMoveName(randomNumber);
+const playerMove = getMoveName(argMoveId);
 
 
 displayResult(computerMove, playerMove);
