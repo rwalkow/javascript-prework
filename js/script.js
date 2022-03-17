@@ -1,8 +1,8 @@
 'use strict';
 {
-let playerRoundResult=[0,0,0];  // player move: stone, papaer, scissors
-let computerRoundResult=[0,0,0]; // computer move: stone, papaer, scissors
-let gameResult=[0,0,0]; //palyer win, computer win , draw
+const playerRoundResult=[0,0,0];  // player move: stone, papaer, scissors
+const computerRoundResult=[0,0,0]; // computer move: stone, papaer, scissors
+const gameResult=[0,0,0]; //palyer win, computer win , draw
 let counter = 0;
 const cheatingFactor=10; //cheating factor in % for example 10% - cheat every 10-th move
 
